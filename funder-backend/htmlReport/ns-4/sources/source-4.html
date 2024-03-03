@@ -1,0 +1,227 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > InvestedProduct</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.asdc.funderbackend.entity</a>
+</div>
+
+<h1>Coverage Summary for Class: InvestedProduct (com.asdc.funderbackend.entity)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">InvestedProduct</td>
+<td class="coverageStat">
+  <span class="percent">
+    26.7%
+  </span>
+  <span class="absValue">
+    (4/15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    26.7%
+  </span>
+  <span class="absValue">
+    (4/15)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">InvestedProduct$HibernateInstantiator$F0MH3pUj</td>
+  </tr>
+  <tr>
+    <td class="name">InvestedProduct$HibernateInstantiator$PAV5Ol53</td>
+  </tr>
+  <tr>
+    <td class="name">InvestedProduct$HibernateProxy$7iDKYIBH</td>
+  </tr>
+  <tr>
+    <td class="name">InvestedProduct$HibernateProxy$fqWvLbOH</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    26.7%
+  </span>
+  <span class="absValue">
+    (4/15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    26.7%
+  </span>
+  <span class="absValue">
+    (4/15)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.asdc.funderbackend.entity;
+&nbsp;
+&nbsp;import java.util.Date;
+&nbsp;import org.hibernate.annotations.CreationTimestamp;
+&nbsp;import org.hibernate.annotations.UpdateTimestamp;
+&nbsp;import jakarta.persistence.Column;
+&nbsp;import jakarta.persistence.Entity;
+&nbsp;import jakarta.persistence.GeneratedValue;
+&nbsp;import jakarta.persistence.GenerationType;
+&nbsp;import jakarta.persistence.Id;
+&nbsp;import jakarta.persistence.JoinColumn;
+&nbsp;import jakarta.persistence.ManyToOne;
+&nbsp;import jakarta.persistence.Table;
+&nbsp;import jakarta.persistence.Temporal;
+&nbsp;import jakarta.persistence.TemporalType;
+&nbsp;
+&nbsp;@Entity
+&nbsp;@Table(name = &quot;INVESTED_PRODUCT&quot;)
+<b class="fc">&nbsp;public class InvestedProduct {</b>
+&nbsp;
+&nbsp;    @Id
+&nbsp;    @Column(name = &quot;ID&quot;)
+&nbsp;    @GeneratedValue(strategy = GenerationType.IDENTITY)
+&nbsp;    private Long id;
+&nbsp;    
+&nbsp;    @Column(name = &quot;INVESTOR_ID&quot;)
+&nbsp;    private Long investorId;
+&nbsp;    
+&nbsp;    @Column(name = &quot;MONEY_INVESTED&quot;)
+&nbsp;    private Long moneyInvested;
+&nbsp;    
+&nbsp;    @Column(name = &quot;PERCENTAGE_OWNED&quot;)
+&nbsp;    private Float percentageOwned;
+&nbsp;    
+&nbsp;    @ManyToOne
+&nbsp;    @JoinColumn(name = &quot;PRODUCT_ID&quot;)
+&nbsp;    private Product product;
+&nbsp;
+&nbsp;    @Column(name = &quot;CREATED_AT&quot;)
+&nbsp;    @Temporal(TemporalType.TIMESTAMP)
+&nbsp;    @CreationTimestamp
+&nbsp;    private Date dateOfInvestment;
+&nbsp;
+&nbsp;    @Column(name = &quot;UPDATED_AT&quot;)
+&nbsp;    @Temporal(TemporalType.TIMESTAMP)
+&nbsp;    @UpdateTimestamp
+&nbsp;    private Date updated_at;
+&nbsp;
+&nbsp;	public Long getId() {
+<b class="nc">&nbsp;		return id;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setId(Long id) {
+<b class="nc">&nbsp;		this.id = id;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public Long getInvestorId() {
+<b class="nc">&nbsp;		return investorId;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setInvestorId(Long investorId) {
+<b class="fc">&nbsp;		this.investorId = investorId;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public Long getMoneyInvested() {
+<b class="nc">&nbsp;		return moneyInvested;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setMoneyInvested(Long moneyInvested) {
+<b class="fc">&nbsp;		this.moneyInvested = moneyInvested;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public Float getPercentageOwned() {
+<b class="nc">&nbsp;		return percentageOwned;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setPercentageOwned(Float percentageOwned) {
+<b class="nc">&nbsp;		this.percentageOwned = percentageOwned;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public Product getProduct() {
+<b class="nc">&nbsp;		return product;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setProduct(Product product) {
+<b class="fc">&nbsp;		this.product = product;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public Date getDateOfInvestment() {
+<b class="nc">&nbsp;		return dateOfInvestment;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setDateOfInvestment(Date dateOfInvestment) {
+<b class="nc">&nbsp;		this.dateOfInvestment = dateOfInvestment;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public Date getUpdated_at() {
+<b class="nc">&nbsp;		return updated_at;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setUpdated_at(Date updated_at) {
+<b class="nc">&nbsp;		this.updated_at = updated_at;</b>
+&nbsp;	}
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-04 16:29</div>
+</div>
+</body>
+</html>

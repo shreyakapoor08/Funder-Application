@@ -1,0 +1,16 @@
+ .dashboard {
+	 font-family: "Poppins", sans-serif;
+}
+ .dashboard .main-wrapper {
+	 display: flex;
+}
+ .dashboard .main-wrapper .page-wrapper {
+	 display: flex;
+	 flex-grow: 1;
+}
+ @media screen and (max-width: 676px) {
+	 .dashboard .main-wrapper {
+		 flex-direction: column;
+	}
+}
+ 

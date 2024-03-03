@@ -1,0 +1,79 @@
+[
+    {
+        "requirement": "funding1",
+        "title": "Link Station: A six bay ssd",
+        "product_image": "https://c1.iggcdn.com/indiegogo-media-prod-cld/image/upload/c_fit,w_auto,g_center,q_auto:best,dpr_1.3,f_auto/vfzypwztqpeip9q5kpju",
+        "labels": "Tech | Computer | Acessories",
+        "category": "Food",
+        "funding_amount": "8800",
+        "percentage": "100%",
+        "initialFundingDate": "2023-12-10T13:34:36.000+00:00",
+        "days_left": "26"
+    },
+    {
+        "requirement": "funding2",
+        "title": "Zero Breeze: Your Portable AC",
+        "product_image": "https://c4.iggcdn.com/indiegogo-media-prod-cld/image/upload/c_fit,w_auto,g_center,q_auto:best,dpr_1.3,f_auto/czgvddjeedzjdokirwwe",
+        "labels": "Lifestyle | Home | Equipments",
+        "category": "Food",
+        "funding_amount": "15800",
+        "percentage": "10%",
+        "initialFundingDate": "2023-12-10T13:34:36.000+00:00",
+        "days_left": "90"
+    },
+    {
+        "requirement": "funding3",
+        "title": "Steepless Coffee Grinder",
+        "product_image": "https://c2.iggcdn.com/indiegogo-media-prod-cld/image/upload/c_fit,w_auto,g_center,q_auto:best,dpr_1.3,f_auto/wbs0sjcdnh9x6fcufb99",
+        "labels": "Lifestyle | Luxury | Equipment",
+        "category": "Drink",
+        "funding_amount": "45214",
+        "percentage": "37%",
+        "initialFundingDate": "2023-12-10T13:34:36.000+00:00",
+        "days_left": "182"
+    },
+    {
+        "requirement": "funding4",
+        "title": "Join the Brewing Circle",
+        "product_image": "https://c2.iggcdn.com/indiegogo-media-prod-cld/image/upload/c_fit,w_auto,g_center,q_auto:best,dpr_1.3,f_auto/s57b2gnba2pyhgd3udrw",
+        "labels": "Lifestyle | Luxury | Equipment",
+        "category": "Drink",
+        "funding_amount": "124568",
+        "percentage": "15%",
+        "initialFundingDate": "2023-12-10T13:34:36.000+00:00",
+        "days_left": "95"
+    },
+    {
+        "requirement": "funding5",
+        "title": "Ozlo Earbuds",
+        "product_image": "https://c0.iggcdn.com/indiegogo-media-prod-cld/image/upload/c_fit,w_auto,g_center,q_auto:best,dpr_1.3,f_auto/d7tv7dzmsfyatq4fylst",
+        "labels": "Gadget | Tech | Equipments",
+        "category": "Snack",
+        "funding_amount": "55475",
+        "percentage": "75%",
+        "initialFundingDate": "2023-12-10T13:34:36.000+00:00",
+        "days_left": "2"
+    },
+    {
+        "requirement": "funding6",
+        "title": "Zatori: Next Gen Electric Scooter",
+        "product_image": "https://c1.iggcdn.com/indiegogo-media-prod-cld/image/upload/c_fit,w_auto,g_center,q_auto:best,dpr_1.3,f_auto/v3a3fsjm82cynzabnalh",
+        "labels": "Vehicle | Lifestyle | Transport",
+        "category": "Snack",
+        "funding_amount": "80000",
+        "percentage": "60%",
+        "initialFundingDate": "2023-12-10T13:34:36.000+00:00",
+        "days_left": "360"
+    },
+    {
+        "requirement": "funding7",
+        "title": "Dock Case: USB-C 7-in-1 Hub",
+        "product_image": "https://c4.iggcdn.com/indiegogo-media-prod-cld/image/upload/c_fit,w_auto,g_center,q_auto:best,dpr_1.3,f_auto/lvjiw4g4axqy8sx5jom3",
+        "labels": "Tech | Computer | Acessories",
+        "category": "Desert",
+        "funding_amount": "24000",
+        "percentage": "95%",
+        "initialFundingDate": "2023-12-10T13:34:36.000+00:00",
+        "days_left": "158"
+    }
+]

@@ -1,0 +1,151 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > BlogController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.asdc.funderbackend.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: BlogController (com.asdc.funderbackend.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BlogController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.asdc.funderbackend.controller;
+&nbsp;
+&nbsp;import com.asdc.funderbackend.entity.Blog;
+&nbsp;import com.asdc.funderbackend.service.BlogService;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.http.HttpStatus;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Blog controller.
+&nbsp; */
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;/blog&quot;)
+<b class="fc">&nbsp;public class BlogController {</b>
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    private BlogService blogService;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Get all blogs response entity.
+&nbsp;     *
+&nbsp;     * @return the response entity
+&nbsp;     */
+&nbsp;// Get All Blogs
+&nbsp;    @GetMapping(&quot;/getAllBlogs&quot;)
+&nbsp;    public ResponseEntity&lt;List&lt;Blog&gt;&gt; getAllBlogs(){
+<b class="fc">&nbsp;        List&lt;Blog&gt; allBlogs = blogService.getAllBlogs();</b>
+<b class="fc">&nbsp;        return new ResponseEntity&lt;List&lt;Blog&gt;&gt;(allBlogs,HttpStatus.OK);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets blog by id.
+&nbsp;     *
+&nbsp;     * @param blog_id the blog id
+&nbsp;     * @return the blog by id
+&nbsp;     */
+&nbsp;// Get Blogs by Id
+&nbsp;    @GetMapping(&quot;/getBlog/{blogId}&quot;)
+&nbsp;    public ResponseEntity&lt;Blog&gt; getBlogById(@PathVariable(value = &quot;blogId&quot;) Long blog_id){
+<b class="fc">&nbsp;        Blog blog = blogService.getBlogById(blog_id);</b>
+<b class="fc">&nbsp;        return new ResponseEntity&lt;Blog&gt;(blog,HttpStatus.OK);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-04 16:29</div>
+</div>
+</body>
+</html>

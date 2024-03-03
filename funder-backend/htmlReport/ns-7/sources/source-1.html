@@ -1,0 +1,105 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > InvestedProductService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.asdc.funderbackend.service</a>
+</div>
+
+<h1>Coverage Summary for Class: InvestedProductService (com.asdc.funderbackend.service)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">InvestedProductService$MockitoMock$qxlUDR9v</td>
+  </tr>
+  <tr>
+    <td class="name">InvestedProductService$MockitoMock$qxlUDR9v$auxiliary$UjeYPqZp</td>
+  </tr>
+  <tr>
+    <td class="name">InvestedProductService$MockitoMock$qxlUDR9v$auxiliary$XqWUrlJh</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.asdc.funderbackend.service;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;import com.asdc.funderbackend.entity.InvestedProduct;
+&nbsp;import com.asdc.funderbackend.entity.InvestmentDao;
+&nbsp;
+&nbsp;/**
+&nbsp; * The interface Invested product service.
+&nbsp; */
+&nbsp;public interface InvestedProductService {
+&nbsp;
+&nbsp;	/**
+&nbsp;	 * Gets all invested product.
+&nbsp;	 *
+&nbsp;	 * @param userId the user id
+&nbsp;	 * @return the all invested product
+&nbsp;	 */
+&nbsp;	List&lt;InvestedProduct&gt; getAllInvestedProduct(Long userId);
+&nbsp;
+&nbsp;	/**
+&nbsp;	 * Save investment boolean.
+&nbsp;	 *
+&nbsp;	 * @param investmentDao the investment dao
+&nbsp;	 * @return the boolean
+&nbsp;	 */
+&nbsp;	boolean saveInvestment(InvestmentDao investmentDao);
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-04 16:29</div>
+</div>
+</body>
+</html>

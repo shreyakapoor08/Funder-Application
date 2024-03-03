@@ -1,0 +1,323 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > ProductController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.asdc.funderbackend.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: ProductController (com.asdc.funderbackend.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ProductController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    93.4%
+  </span>
+  <span class="absValue">
+    (85/91)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.asdc.funderbackend.controller;
+&nbsp;
+&nbsp;import com.asdc.funderbackend.entity.Product;
+&nbsp;import com.asdc.funderbackend.service.ProductService;
+&nbsp;import org.slf4j.Logger;
+&nbsp;import org.slf4j.LoggerFactory;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.http.HttpStatus;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;import org.springframework.web.multipart.MultipartFile;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;/**
+&nbsp; * Controller class for managing product-related operations.
+&nbsp; */
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;/products&quot;)
+&nbsp;public class ProductController {
+&nbsp;
+<b class="fc">&nbsp;    private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);</b>
+&nbsp;
+&nbsp;    private final ProductService productService;
+&nbsp;
+&nbsp;    @Autowired
+<b class="fc">&nbsp;    public ProductController(ProductService productService) {</b>
+<b class="fc">&nbsp;        this.productService = productService;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Retrieve all products.
+&nbsp;     *
+&nbsp;     * @return ResponseEntity containing a list of products and HTTP status.
+&nbsp;     */
+&nbsp;    @GetMapping(&quot;/all&quot;)
+&nbsp;    public ResponseEntity&lt;List&lt;Product&gt;&gt; getAllProducts() {
+<b class="fc">&nbsp;        if(LOGGER.isInfoEnabled()) {</b>
+<b class="fc">&nbsp;            LOGGER.info(&quot;Entering into getAllProducts(){}&quot;);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        List&lt;Product&gt; foundedProducts = null;</b>
+<b class="fc">&nbsp;        HttpStatus status = HttpStatus.OK;</b>
+&nbsp;
+&nbsp;        try {
+<b class="fc">&nbsp;            foundedProducts = productService.getAllProducts();</b>
+<b class="fc">&nbsp;            if (foundedProducts.isEmpty()) {</b>
+<b class="fc">&nbsp;                status = HttpStatus.NO_CONTENT;</b>
+<b class="fc">&nbsp;                return ResponseEntity.status(status).body(foundedProducts);</b>
+&nbsp;            }
+<b class="fc">&nbsp;            return ResponseEntity.status(status).body(foundedProducts);</b>
+<b class="fc">&nbsp;        } catch (Exception ex) {</b>
+<b class="fc">&nbsp;            status = HttpStatus.INTERNAL_SERVER_ERROR;</b>
+<b class="fc">&nbsp;            LOGGER.error(&quot;Error while fetching records: {}&quot;, ex);</b>
+<b class="fc">&nbsp;            return ResponseEntity.status(status).body(null);</b>
+&nbsp;        } finally {
+<b class="fc">&nbsp;            if(LOGGER.isInfoEnabled()) {</b>
+<b class="fc">&nbsp;                LOGGER.info(&quot;Exit from getAllProducts(){}&quot;);</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Retrieve products associated with a specific user.
+&nbsp;     *
+&nbsp;     * @param userId The ID of the user.
+&nbsp;     * @return ResponseEntity containing a list of products and HTTP status.
+&nbsp;     */
+&nbsp;    @GetMapping(&quot;/user/{userId}&quot;)
+&nbsp;    public ResponseEntity&lt;List&lt;Product&gt;&gt; getProductsByUserId(@PathVariable Long userId) {
+<b class="fc">&nbsp;        if(LOGGER.isInfoEnabled()) {</b>
+<b class="fc">&nbsp;            LOGGER.info(&quot;Entering into getProductsByUserId(){}&quot;);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        List&lt;Product&gt; userProducts = null;</b>
+<b class="fc">&nbsp;        HttpStatus status = HttpStatus.OK;</b>
+&nbsp;
+&nbsp;        try {
+<b class="fc">&nbsp;            userProducts = productService.getProductsByUserId(userId);</b>
+<b class="fc">&nbsp;            if (userProducts.isEmpty()) {</b>
+<b class="fc">&nbsp;                status = HttpStatus.NO_CONTENT;</b>
+<b class="fc">&nbsp;                return ResponseEntity.status(status).body(userProducts);</b>
+&nbsp;            }
+<b class="fc">&nbsp;            return ResponseEntity.status(status).body(userProducts);</b>
+<b class="fc">&nbsp;        } catch (Exception ex) {</b>
+<b class="fc">&nbsp;            status = HttpStatus.INTERNAL_SERVER_ERROR;</b>
+<b class="fc">&nbsp;            LOGGER.error(&quot;Error while fetching products by user ID: {}&quot;, ex);</b>
+<b class="fc">&nbsp;            return ResponseEntity.status(status).body(null);</b>
+&nbsp;        } finally {
+<b class="fc">&nbsp;            if(LOGGER.isInfoEnabled()) {</b>
+<b class="fc">&nbsp;                LOGGER.info(&quot;Exit from getProductsByUserId(){}&quot;);</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Add a new product.
+&nbsp;     *
+&nbsp;     * @param product The product details.
+&nbsp;     * @param image   The product image.
+&nbsp;     * @return ResponseEntity containing the added product and HTTP status.
+&nbsp;     */
+&nbsp;    @PostMapping(&quot;/add&quot;)
+&nbsp;    public ResponseEntity&lt;Product&gt; addProduct(@RequestPart(&quot;product&quot;) String product, @RequestParam(&quot;image&quot;) MultipartFile image) {
+<b class="fc">&nbsp;        if(LOGGER.isInfoEnabled()) {</b>
+<b class="fc">&nbsp;            LOGGER.info(&quot;Entering into addProduct(){}&quot;);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        HttpStatus status = HttpStatus.OK;</b>
+&nbsp;
+&nbsp;        try {
+<b class="fc">&nbsp;            Product addedProduct = productService.addProduct(product, image);</b>
+<b class="fc">&nbsp;            if (addedProduct == null) {</b>
+<b class="fc">&nbsp;                status = HttpStatus.INTERNAL_SERVER_ERROR;</b>
+<b class="fc">&nbsp;                LOGGER.error(&quot;Error adding the product. Returned product is null.&quot;);</b>
+<b class="fc">&nbsp;                return ResponseEntity.status(status).body(null);</b>
+&nbsp;            }
+<b class="fc">&nbsp;            return ResponseEntity.status(status).body(addedProduct);</b>
+<b class="fc">&nbsp;        } catch (Exception ex) {</b>
+<b class="fc">&nbsp;            status = HttpStatus.INTERNAL_SERVER_ERROR;</b>
+<b class="fc">&nbsp;            LOGGER.error(&quot;Error while adding a product: {}&quot;, ex);</b>
+<b class="fc">&nbsp;            return ResponseEntity.status(status).body(null);</b>
+&nbsp;        } finally {
+<b class="fc">&nbsp;            if(LOGGER.isInfoEnabled()) {</b>
+<b class="fc">&nbsp;                LOGGER.info(&quot;Exit from addProduct(){}&quot;);</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Retrieve a product by its ID.
+&nbsp;     *
+&nbsp;     * @param productId The ID of the product.
+&nbsp;     * @return ResponseEntity containing the product and HTTP status.
+&nbsp;     */
+&nbsp;    @GetMapping(&quot;/{productId}&quot;)
+&nbsp;    public ResponseEntity&lt;Product&gt; getProductByProductId(@PathVariable Long productId) {
+<b class="fc">&nbsp;        if(LOGGER.isInfoEnabled()) {</b>
+<b class="fc">&nbsp;            LOGGER.info(&quot;Entering into getProductByProductId(){}&quot;);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        HttpStatus status = HttpStatus.OK;</b>
+&nbsp;
+&nbsp;        try {
+<b class="fc">&nbsp;            Product product = productService.getProductByProductId(productId);</b>
+<b class="fc">&nbsp;            return ResponseEntity.status(status).body(product);</b>
+<b class="fc">&nbsp;        } catch (Exception ex) {</b>
+<b class="fc">&nbsp;            status = HttpStatus.INTERNAL_SERVER_ERROR;</b>
+<b class="fc">&nbsp;            LOGGER.error(&quot;Error while fetching product by ID: {}&quot;, ex);</b>
+<b class="fc">&nbsp;            return ResponseEntity.status(status).body(null);</b>
+&nbsp;        } finally {
+<b class="fc">&nbsp;            if(LOGGER.isInfoEnabled()) {</b>
+<b class="fc">&nbsp;                LOGGER.info(&quot;Exit from getProductByProductId(){}&quot;);</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Update an existing product.
+&nbsp;     *
+&nbsp;     * @param productId      The ID of the product to be updated.
+&nbsp;     * @param updatedProduct The updated product details.
+&nbsp;     * @return ResponseEntity containing the updated product and HTTP status.
+&nbsp;     */
+&nbsp;    @PutMapping(&quot;/update/{productId}&quot;)
+&nbsp;    public ResponseEntity&lt;Product&gt; updateProduct(@PathVariable Long productId, @RequestPart(&quot;updatedProduct&quot;) String updatedProduct) {
+<b class="fc">&nbsp;        if(LOGGER.isInfoEnabled()) {</b>
+<b class="fc">&nbsp;            LOGGER.info(&quot;Entering into updateProduct(){}&quot;);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        HttpStatus status = HttpStatus.OK;</b>
+&nbsp;
+&nbsp;        try {
+<b class="fc">&nbsp;            Product updated = productService.updateProduct(productId, updatedProduct);</b>
+<b class="fc">&nbsp;            if (updated == null) {</b>
+<b class="fc">&nbsp;                status = HttpStatus.INTERNAL_SERVER_ERROR;</b>
+<b class="fc">&nbsp;                LOGGER.error(&quot;Error updating the product. Returned product is null.&quot;);</b>
+<b class="fc">&nbsp;                return ResponseEntity.status(status).body(null);</b>
+&nbsp;            }
+<b class="fc">&nbsp;            return ResponseEntity.status(status).body(updated);</b>
+<b class="fc">&nbsp;        } catch (Exception ex) {</b>
+<b class="fc">&nbsp;            status = HttpStatus.INTERNAL_SERVER_ERROR;</b>
+<b class="fc">&nbsp;            LOGGER.error(&quot;Error while updating the product: {}&quot;, ex);</b>
+<b class="fc">&nbsp;            return ResponseEntity.status(status).body(null);</b>
+&nbsp;        } finally {
+<b class="fc">&nbsp;            if(LOGGER.isInfoEnabled()) {</b>
+<b class="fc">&nbsp;                LOGGER.info(&quot;Exit from updateProduct(){}&quot;);</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Delete a product by its ID.
+&nbsp;     *
+&nbsp;     * @param productId The ID of the product to be deleted.
+&nbsp;     * @return ResponseEntity containing a success message and HTTP status.
+&nbsp;     */
+&nbsp;    @DeleteMapping(&quot;/delete/{productId}&quot;)
+&nbsp;    public ResponseEntity&lt;String&gt; deleteProduct(@PathVariable Long productId) {
+<b class="fc">&nbsp;        if(LOGGER.isInfoEnabled()) {</b>
+<b class="fc">&nbsp;            LOGGER.info(&quot;Entering into deleteProduct(){}&quot;);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        HttpStatus status = HttpStatus.OK;</b>
+&nbsp;
+&nbsp;        try {
+<b class="fc">&nbsp;            productService.deleteProduct(productId);</b>
+<b class="fc">&nbsp;            return ResponseEntity.status(status).body(&quot;Product with ID: &quot; + productId + &quot; deleted successfully.&quot;);</b>
+<b class="fc">&nbsp;        } catch (Exception ex) {</b>
+<b class="fc">&nbsp;            status = HttpStatus.INTERNAL_SERVER_ERROR;</b>
+<b class="fc">&nbsp;            LOGGER.error(&quot;Error while deleting the product: {}&quot;, ex);</b>
+<b class="fc">&nbsp;            return ResponseEntity.status(status).body(&quot;Error deleting the product with ID: &quot; + productId);</b>
+&nbsp;        } finally {
+<b class="fc">&nbsp;            if(LOGGER.isInfoEnabled()) {</b>
+<b class="fc">&nbsp;                LOGGER.info(&quot;Exit from deleteProduct(){}&quot;);</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-04 16:29</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "John Doe",
+    "image": "https://images.unsplash.com/photo-1517677129300-07b130802f46?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NHwxNzI5MjU4fHxlbnwwfHx8fHw%3D",
+    "feedback": "This app has been pivotal for helping our team collaborate on tasks and new plans.",
+    "stars": 5
+  },
+  {
+    "name": "Jane Smith",
+    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MjB8MTcyOTI1OHx8ZW58MHx8fHx8",
+    "feedback": "Pellentesque nec risus euismod, vehicula augue eu, fermentum urna.",
+    "stars": 4
+  },
+  {
+    "name": "Alice Johnson",
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8M3wxNzI5MjU4fHxlbnwwfHx8fHw%3D",
+    "feedback": "Outstanding quality and professionalism!",
+    "stars": 3
+  },
+  {
+    "name": "Mike Williams",
+    "image": "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8OHwxNzI5MjU4fHxlbnwwfHx8fHw%3D",
+    "feedback": "Impressed with their dedication!",
+    "stars": 3
+  },
+  {
+    "name": "Daniel Brown",
+    "image": "https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MzN8MTcyOTI1OHx8ZW58MHx8fHx8",
+    "feedback": "Top-notch service, very satisfied!",
+    "stars": 4
+  },
+  {
+    "name": "Sophia Wilson",
+    "image": "https://images.unsplash.com/photo-1515463892140-58a22e37ff72?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8Mjl8MTcyOTI1OHx8ZW58MHx8fHx8",
+    "feedback": "Exceeded my expectations. Fantastic!",
+    "stars": 5
+  }
+]

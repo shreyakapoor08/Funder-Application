@@ -1,0 +1,73 @@
+.dashboard-controls {
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-color: white;
+  font-size: 16px;
+  height: 100%;
+  position: relative;
+  padding: 10px;
+  border-width: 1px 0px 1px 0px;
+  border-style: solid;
+  border-color: gainsboro;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.dashboard-controls .ui-segment {
+  box-shadow: none;
+  background-color: transparent;
+}
+.dashboard-controls .left-controls {
+  display: flex;
+  margin-left: 12px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.dashboard-controls .left-controls .seg1 {
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: none;
+  height: 10px;
+  padding: 0 8px;
+}
+.dashboard-controls .left-controls .ui-datepicker {
+  margin: 0 !important;
+}
+.dashboard-controls .left-controls .seg2 {
+  padding-left: 0;
+}
+.dashboard-controls .left-controls .ui-datepicker .ui-input__input {
+  width: 150px;
+  padding: 10px;
+  background-color: white;
+}
+.dashboard-controls .right-controls {
+  margin-left: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+  align-self: flex-end;
+}
+.dashboard-controls .right-controls .filter-wrapper {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.dashboard-controls .right-controls .filter-wrapper .filter-icon-counter {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-right: 5px;
+}
+.dashboard-controls .right-controls .filter-wrapper .filter-icon-counter .counter {
+  position: absolute;
+  top: -7px;
+  right: -10px;
+}
+label.s_text {
+  font-size: 16px !important;
+}

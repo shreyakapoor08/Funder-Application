@@ -1,0 +1,181 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > SecurityConfig</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.asdc.funderbackend.config</a>
+</div>
+
+<h1>Coverage Summary for Class: SecurityConfig (com.asdc.funderbackend.config)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SecurityConfig</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (18/18)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">SecurityConfig$$SpringCGLIB$$0</td>
+  </tr>
+  <tr>
+    <td class="name">SecurityConfig$$SpringCGLIB$$1</td>
+  </tr>
+  <tr>
+    <td class="name">SecurityConfig$$SpringCGLIB$$2</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (18/18)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.asdc.funderbackend.config;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.context.annotation.Bean;
+&nbsp;import org.springframework.context.annotation.Configuration;
+&nbsp;import org.springframework.security.authentication.AuthenticationManager;
+&nbsp;import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+&nbsp;import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+&nbsp;import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+&nbsp;import org.springframework.security.config.http.SessionCreationPolicy;
+&nbsp;import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+&nbsp;import org.springframework.security.crypto.password.PasswordEncoder;
+&nbsp;import org.springframework.security.web.SecurityFilterChain;
+&nbsp;import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+&nbsp;import org.springframework.web.cors.CorsConfiguration;
+&nbsp;
+&nbsp;import com.asdc.funderbackend.util.JwtAuthenticationFilter;
+&nbsp;import lombok.RequiredArgsConstructor;
+&nbsp;import org.springframework.security.config.Customizer;
+&nbsp;
+&nbsp;
+&nbsp;@Configuration
+&nbsp;@EnableWebSecurity
+<b class="fc">&nbsp;@RequiredArgsConstructor</b>
+&nbsp;public class SecurityConfig {
+&nbsp;    
+&nbsp;    @Autowired
+&nbsp;    private JwtAuthenticationFilter jwtAuthenticationFilter;
+&nbsp;
+&nbsp;    @Bean
+&nbsp;	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+&nbsp;    	
+<b class="fc">&nbsp;    	CorsConfiguration corsConfiguration = new CorsConfiguration();</b>
+<b class="fc">&nbsp;        corsConfiguration.setAllowedHeaders(List.of(&quot;Authorization&quot;));</b>
+<b class="fc">&nbsp;        corsConfiguration.setAllowedOrigins(List.of(&quot;*&quot;));</b>
+<b class="fc">&nbsp;        corsConfiguration.setAllowedMethods(List.of(&quot;GET&quot;, &quot;POST&quot;, &quot;PUT&quot;, &quot;DELETE&quot;, &quot;PUT&quot;,&quot;OPTIONS&quot;,&quot;PATCH&quot;, &quot;DELETE&quot;));</b>
+<b class="fc">&nbsp;        corsConfiguration.setAllowCredentials(true);</b>
+<b class="fc">&nbsp;        corsConfiguration.setExposedHeaders(List.of(&quot;Authorization&quot;));</b>
+&nbsp;        
+<b class="fc">&nbsp;        httpSecurity</b>
+<b class="fc">&nbsp;            .csrf(c -&gt; c.disable())</b>
+<b class="fc">&nbsp;            .cors(Customizer.withDefaults())</b>
+<b class="fc">&nbsp;            .authorizeHttpRequests(auth-&gt;auth</b>
+<b class="fc">&nbsp;            .requestMatchers(&quot;/user/**&quot;,&quot;products/all&quot;,&quot;/products/{productId}&quot;,&quot;/comments/getCommentsByProduct/{productId}&quot;,&quot;/comments/saveComment&quot;,&quot;/comments/**&quot;, &quot;/contact/sendEmail&quot;,&quot;/blog/getAllBlogs&quot;,&quot;/blog/getBlog/{blogId}&quot;).permitAll()</b>
+<b class="fc">&nbsp;            .anyRequest().authenticated())</b>
+<b class="fc">&nbsp;            .sessionManagement(session-&gt;session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));</b>
+<b class="fc">&nbsp;        httpSecurity.addFilterBefore(jwtAuthenticationFilter,UsernamePasswordAuthenticationFilter.class);</b>
+<b class="fc">&nbsp;        return httpSecurity.build();</b>
+&nbsp;	}
+&nbsp;    
+&nbsp;    @Bean
+&nbsp;    public PasswordEncoder passwordEncoder() {
+<b class="fc">&nbsp;        return new BCryptPasswordEncoder();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Bean
+&nbsp;	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+<b class="fc">&nbsp;	    return authenticationConfiguration.getAuthenticationManager();</b>
+&nbsp;	}
+&nbsp;} 
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-04 16:29</div>
+</div>
+</body>
+</html>

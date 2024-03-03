@@ -1,0 +1,242 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > Blog</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.asdc.funderbackend.entity</a>
+</div>
+
+<h1>Coverage Summary for Class: Blog (com.asdc.funderbackend.entity)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Blog</td>
+<td class="coverageStat">
+  <span class="percent">
+    89.5%
+  </span>
+  <span class="absValue">
+    (17/19)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    86.4%
+  </span>
+  <span class="absValue">
+    (19/22)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Blog$HibernateInstantiator$p6Pig0Wa</td>
+  </tr>
+  <tr>
+    <td class="name">Blog$HibernateInstantiator$SxGuWKjL</td>
+  </tr>
+  <tr>
+    <td class="name">Blog$HibernateProxy$BZutxgIF</td>
+  </tr>
+  <tr>
+    <td class="name">Blog$HibernateProxy$lGrPy0DD</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    89.5%
+  </span>
+  <span class="absValue">
+    (17/19)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    86.4%
+  </span>
+  <span class="absValue">
+    (19/22)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.asdc.funderbackend.entity;
+&nbsp;
+&nbsp;
+&nbsp;import jakarta.persistence.*;
+&nbsp;import lombok.NoArgsConstructor;
+&nbsp;import org.hibernate.annotations.CreationTimestamp;
+&nbsp;import java.text.SimpleDateFormat;
+&nbsp;import java.util.Date;
+&nbsp;
+&nbsp;@Entity
+&nbsp;@Table(name=&quot;BLOG&quot;)
+<b class="fc">&nbsp;@NoArgsConstructor</b>
+&nbsp;public class Blog {
+&nbsp;
+&nbsp;    @Id
+&nbsp;    @GeneratedValue(strategy = GenerationType.IDENTITY)
+&nbsp;    @Column(name=&quot;BLOG_ID&quot;)
+&nbsp;    private Long blog_id;
+&nbsp;
+&nbsp;    @Column(name=&quot;TITLE&quot;,length = 100)
+&nbsp;    private String title;
+&nbsp;    // columnDefinition=&quot;TEXT&quot;
+&nbsp;    @Lob
+&nbsp;    @Column(name=&quot;CONTENT&quot;,length = 10000)
+&nbsp;    private String content;
+&nbsp;
+&nbsp;    @Column(name=&quot;IMAGE_URL&quot;,length = 10000)
+&nbsp;    private String imageName;
+&nbsp;
+&nbsp;    @Temporal(TemporalType.TIMESTAMP)
+&nbsp;    @CreationTimestamp
+&nbsp;    @Column(name=&quot;ADDED_DATE&quot;,length = 10000)
+&nbsp;    private Date addedDate;
+&nbsp;
+&nbsp;    @Column(name=&quot;BLOG_TYPE&quot;,length = 100)
+&nbsp;    private String blogType;
+&nbsp;
+&nbsp;    @Column(name=&quot;SHORT_DESCRIPTION&quot;,length = 500)
+&nbsp;    private String shortDescription;
+&nbsp;
+&nbsp;    // Adding transient as this is the only formatted date used for displaying on UI.
+&nbsp;    @Transient
+&nbsp;    private String addedDateFormatted;
+&nbsp;
+&nbsp;
+&nbsp;    public String getFormattedAddedDate(){
+<b class="fc">&nbsp;        if (addedDate != null) {</b>
+<b class="fc">&nbsp;            SimpleDateFormat sdf = new SimpleDateFormat(&quot;dd MMM, yyyy&quot;);</b>
+<b class="fc">&nbsp;            return sdf.format(addedDate);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setFormattedAddedDate(String addedDateFormatted){
+<b class="nc">&nbsp;        this.addedDateFormatted = addedDateFormatted;</b>
+&nbsp;    }
+&nbsp;    public Long getBlog_id() {
+<b class="fc">&nbsp;        return blog_id;</b>
+&nbsp;    }
+&nbsp;    public void setBlog_id(Long blog_id) {
+<b class="fc">&nbsp;        this.blog_id = blog_id;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getTitle() {
+<b class="fc">&nbsp;        return title;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setTitle(String title) {
+<b class="fc">&nbsp;        this.title = title;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getContent() {
+<b class="fc">&nbsp;        return content;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setContent(String content) {
+<b class="fc">&nbsp;        this.content = content;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getImageName() {
+<b class="fc">&nbsp;        return imageName;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setImageName(String imageName) {
+<b class="fc">&nbsp;        this.imageName = imageName;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Date getAddedDate() {
+<b class="fc">&nbsp;        return addedDate;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setAddedDate(Date addedDate) {
+<b class="fc">&nbsp;        this.addedDate = addedDate;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getBlogType() {
+<b class="fc">&nbsp;        return blogType;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setBlogType(String blogType) {
+<b class="fc">&nbsp;        this.blogType = blogType;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getShortDescription() {
+<b class="fc">&nbsp;        return shortDescription;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setShortDescription(String shortDescription) {
+<b class="fc">&nbsp;        this.shortDescription = shortDescription;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getAddedDateFormatted() {
+<b class="fc">&nbsp;        return addedDateFormatted;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setAddedDateFormatted(String addedDateFormatted) {
+<b class="nc">&nbsp;        this.addedDateFormatted = addedDateFormatted;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-04 16:29</div>
+</div>
+</body>
+</html>

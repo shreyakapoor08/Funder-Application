@@ -1,0 +1,190 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > JwtAuthenticationFilter</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.asdc.funderbackend.util</a>
+</div>
+
+<h1>Coverage Summary for Class: JwtAuthenticationFilter (com.asdc.funderbackend.util)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">JwtAuthenticationFilter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    33.3%
+  </span>
+  <span class="absValue">
+    (11/33)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.asdc.funderbackend.util;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;
+&nbsp;import org.slf4j.Logger;
+&nbsp;import org.slf4j.LoggerFactory;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+&nbsp;import org.springframework.security.core.context.SecurityContextHolder;
+&nbsp;import org.springframework.security.core.userdetails.UserDetails;
+&nbsp;import org.springframework.security.core.userdetails.UserDetailsService;
+&nbsp;import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+&nbsp;import org.springframework.stereotype.Component;
+&nbsp;import org.springframework.web.filter.OncePerRequestFilter;
+&nbsp;
+&nbsp;import com.asdc.funderbackend.controller.UserController;
+&nbsp;
+&nbsp;import io.jsonwebtoken.ExpiredJwtException;
+&nbsp;import io.jsonwebtoken.MalformedJwtException;
+&nbsp;import jakarta.servlet.FilterChain;
+&nbsp;import jakarta.servlet.ServletException;
+&nbsp;import jakarta.servlet.http.HttpServletRequest;
+&nbsp;import jakarta.servlet.http.HttpServletResponse;
+&nbsp;
+&nbsp;@Component
+<b class="fc">&nbsp;public class JwtAuthenticationFilter extends OncePerRequestFilter {</b>
+&nbsp;
+<b class="fc">&nbsp;	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);</b>
+&nbsp;    private static final String AUTHORIZATION = &quot;Authorization&quot;;
+&nbsp;    private static final String BEARER = &quot;Bearer&quot;;
+&nbsp;    private static final int SEVEN = 7;
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    private JwtUtil jwtUtil;
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    private UserDetailsService userDetailsService;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+&nbsp;
+<b class="fc">&nbsp;    	if(LOGGER.isInfoEnabled()) {</b>
+<b class="fc">&nbsp;			LOGGER.info(&quot;Entering into doFilterInternal(){}&quot;);</b>
+&nbsp;		}    	
+&nbsp;    	
+<b class="fc">&nbsp;        String requestHeader = request.getHeader(AUTHORIZATION);</b>
+<b class="fc">&nbsp;        String username = null;</b>
+<b class="fc">&nbsp;        String token = null;</b>
+&nbsp;
+<b class="fc">&nbsp;        if (requestHeader != null &amp;&amp; requestHeader.startsWith(BEARER)) {</b>
+<b class="nc">&nbsp;            token = requestHeader.substring(SEVEN);</b>
+&nbsp;            try {
+<b class="nc">&nbsp;                username = this.jwtUtil.extractUsername(token);</b>
+<b class="nc">&nbsp;            } catch (IllegalArgumentException e) {</b>
+<b class="nc">&nbsp;                logger.info(&quot;Illegal Argument while fetching the username&quot;);</b>
+<b class="nc">&nbsp;                e.printStackTrace();</b>
+<b class="nc">&nbsp;            } catch (ExpiredJwtException e) {</b>
+<b class="nc">&nbsp;                logger.info(&quot;token is expired&quot;);</b>
+<b class="nc">&nbsp;                e.printStackTrace();</b>
+<b class="nc">&nbsp;            } catch (MalformedJwtException e) {</b>
+<b class="nc">&nbsp;                logger.info(&quot;Invalid Token&quot;);</b>
+<b class="nc">&nbsp;                e.printStackTrace();</b>
+<b class="nc">&nbsp;            } catch (Exception e) {</b>
+<b class="nc">&nbsp;                e.printStackTrace();</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            logger.info(&quot;Invalid Header Value !! &quot;);</b>
+&nbsp;        }
+&nbsp; 
+<b class="fc">&nbsp;        if (username != null &amp;&amp; SecurityContextHolder.getContext().getAuthentication() == null) {</b>
+<b class="nc">&nbsp;            UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);</b>
+&nbsp;
+<b class="nc">&nbsp;            Boolean validateToken = this.jwtUtil.validateToken(token, userDetails);</b>
+&nbsp;
+<b class="nc">&nbsp;            if (validateToken) {</b>
+<b class="nc">&nbsp;                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());</b>
+<b class="nc">&nbsp;                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));</b>
+<b class="nc">&nbsp;                SecurityContextHolder.getContext().setAuthentication(authentication);</b>
+<b class="nc">&nbsp;            } else {</b>
+<b class="nc">&nbsp;                logger.info(&quot;Validation fails !!&quot;);</b>
+&nbsp;            }
+&nbsp;
+&nbsp;        }
+<b class="fc">&nbsp;        filterChain.doFilter(request, response);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-04 16:29</div>
+</div>
+</body>
+</html>

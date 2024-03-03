@@ -1,0 +1,304 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > Product</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.asdc.funderbackend.entity</a>
+</div>
+
+<h1>Coverage Summary for Class: Product (com.asdc.funderbackend.entity)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Product</td>
+<td class="coverageStat">
+  <span class="percent">
+    73.3%
+  </span>
+  <span class="absValue">
+    (22/30)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    72.7%
+  </span>
+  <span class="absValue">
+    (24/33)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Product$HibernateInstantiator$LCpJoZbp</td>
+  </tr>
+  <tr>
+    <td class="name">Product$HibernateInstantiator$yEL4BTed</td>
+  </tr>
+  <tr>
+    <td class="name">Product$HibernateProxy$i98GXl8S</td>
+  </tr>
+  <tr>
+    <td class="name">Product$HibernateProxy$PxPlphC2</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    73.3%
+  </span>
+  <span class="absValue">
+    (22/30)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    72.7%
+  </span>
+  <span class="absValue">
+    (24/33)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.asdc.funderbackend.entity;
+&nbsp;
+&nbsp;import jakarta.persistence.*;
+&nbsp;import org.hibernate.annotations.CreationTimestamp;
+&nbsp;import org.hibernate.annotations.UpdateTimestamp;
+&nbsp;
+&nbsp;import java.util.Date;
+&nbsp;
+&nbsp;@Entity
+&nbsp;@Table(name = &quot;product&quot;)
+<b class="fc">&nbsp;public class Product {</b>
+&nbsp;
+&nbsp;	@Id
+&nbsp;	@Column(name = &quot;ID&quot;)
+&nbsp;	@GeneratedValue(strategy = GenerationType.IDENTITY)
+&nbsp;	private Long id;
+&nbsp;
+&nbsp;	@Column(name = &quot;title&quot;)
+&nbsp;	private String title;
+&nbsp;
+&nbsp;	@Column(name = &quot;description&quot;, columnDefinition = &quot;TEXT&quot;)
+&nbsp;	private String description;
+&nbsp;
+&nbsp;	@Column(name = &quot;category&quot;)
+&nbsp;	private String category;
+&nbsp;
+&nbsp;	@Column(name = &quot;product_image&quot;)
+&nbsp;	private String productImage;
+&nbsp;
+&nbsp;	@Column(name = &quot;date_of_round_closing&quot;)
+&nbsp;	private Date dateOfRoundClosing;
+&nbsp;
+&nbsp;	@Column(name = &quot;funding_amount&quot;)
+&nbsp;	private Long fundingAmount;
+&nbsp;
+<b class="fc">&nbsp;	@Column(name = &quot;raised_amount&quot;)</b>
+<b class="fc">&nbsp;	private Long raisedAmount = 0L;</b>
+&nbsp;
+&nbsp;	@Column(name = &quot;percentage&quot;)
+&nbsp;	private Float percentage;
+&nbsp;
+&nbsp;	@Column(name = &quot;created_at&quot;)
+&nbsp;	@Temporal(TemporalType.TIMESTAMP)
+&nbsp;	@CreationTimestamp
+&nbsp;	private Date createdAt;
+&nbsp;
+&nbsp;	@Column(name = &quot;updated_at&quot;)
+&nbsp;	@Temporal(TemporalType.TIMESTAMP)
+&nbsp;	@UpdateTimestamp
+&nbsp;	private Date updatedAt;
+&nbsp;
+&nbsp;	@ManyToOne
+&nbsp;	@JoinColumn(name = &quot;founder_id&quot;)
+&nbsp;	private User user;
+&nbsp;
+&nbsp;	@Column(name = &quot;is_active&quot;)
+&nbsp;	private boolean isActive;
+&nbsp;
+&nbsp;	// Getters and Setters
+&nbsp;
+&nbsp;	public Long getId() {
+<b class="fc">&nbsp;		return id;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setId(Long id) {
+<b class="fc">&nbsp;		this.id = id;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public User getUser() {
+<b class="fc">&nbsp;		return user;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setUser(User user) {
+<b class="nc">&nbsp;		this.user = user;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;
+&nbsp;	public boolean isActive() {
+<b class="fc">&nbsp;		return isActive;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setActive(boolean isActive) {
+<b class="nc">&nbsp;		this.isActive = isActive;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	// Method to update isActive based on dateOfRoundClosing
+&nbsp;	private boolean isRoundClosed() {
+<b class="nc">&nbsp;		Date currentDate = new Date();</b>
+<b class="nc">&nbsp;		return dateOfRoundClosing != null &amp;&amp; currentDate.after(dateOfRoundClosing);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	private boolean isAmountExceeded() {
+<b class="nc">&nbsp;		return raisedAmount != null &amp;&amp; fundingAmount != null &amp;&amp; raisedAmount &gt; fundingAmount;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@PrePersist
+&nbsp;	@PreUpdate
+&nbsp;	public void updateIsActive() {
+<b class="nc">&nbsp;		isActive = !(isRoundClosed() || isAmountExceeded());</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public String getTitle() {
+<b class="fc">&nbsp;		return title;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setTitle(String title) {
+<b class="fc">&nbsp;		this.title = title;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public String getDescription() {
+<b class="fc">&nbsp;		return description;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setDescription(String description) {
+<b class="fc">&nbsp;		this.description = description;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public String getCategory() {
+<b class="fc">&nbsp;		return category;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setCategory(String category) {
+<b class="fc">&nbsp;		this.category = category;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public String getProductImage() {
+<b class="fc">&nbsp;		return productImage;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setProductImage(String productImage) {
+<b class="fc">&nbsp;		this.productImage = productImage;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public Date getDateOfRoundClosing() {
+<b class="fc">&nbsp;		return dateOfRoundClosing;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setDateOfRoundClosing(Date dateOfRoundClosing) {
+<b class="fc">&nbsp;		this.dateOfRoundClosing = dateOfRoundClosing;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public Long getFundingAmount() {
+<b class="fc">&nbsp;		return fundingAmount;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setFundingAmount(Long fundingAmount) {
+<b class="fc">&nbsp;		this.fundingAmount = fundingAmount;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public Long getRaisedAmount() {
+<b class="fc">&nbsp;		return raisedAmount;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setRaisedAmount(Long raisedAmount) {
+<b class="nc">&nbsp;		this.raisedAmount = raisedAmount;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public Float getPercentage() {
+<b class="fc">&nbsp;		return percentage;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setPercentage(Float percentage) {
+<b class="fc">&nbsp;		this.percentage = percentage;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public Date getCreatedAt() {
+<b class="fc">&nbsp;		return createdAt;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setCreatedAt(Date createdAt) {
+<b class="nc">&nbsp;		this.createdAt = createdAt;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public Date getUpdatedAt() {
+<b class="fc">&nbsp;		return updatedAt;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setUpdatedAt(Date updatedAt) {
+<b class="nc">&nbsp;		this.updatedAt = updatedAt;</b>
+&nbsp;	}
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-04 16:29</div>
+</div>
+</body>
+</html>

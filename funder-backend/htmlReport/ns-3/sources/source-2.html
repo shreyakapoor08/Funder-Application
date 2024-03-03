@@ -1,0 +1,175 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > CommentController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.asdc.funderbackend.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: CommentController (com.asdc.funderbackend.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CommentController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.asdc.funderbackend.controller;
+&nbsp;
+&nbsp;
+&nbsp;import com.asdc.funderbackend.entity.Comment;
+&nbsp;import com.asdc.funderbackend.service.CommentService;
+&nbsp;import lombok.Getter;
+&nbsp;import lombok.Setter;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Comment controller.
+&nbsp; */
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;/comments&quot;)
+&nbsp;public class CommentController {
+&nbsp;
+&nbsp;    private CommentService commentService;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Instantiates a new Comment controller.
+&nbsp;     *
+&nbsp;     * @param commentService the comment service
+&nbsp;     */
+&nbsp;    @Autowired
+<b class="fc">&nbsp;    public CommentController(CommentService commentService){</b>
+<b class="fc">&nbsp;        this.commentService = commentService;</b>
+&nbsp;    }
+&nbsp;//    @GetMapping(&quot;/getAllComments&quot;)
+&nbsp;//    public List&lt;Comment&gt; getAllComments(){
+&nbsp;//        return commentService.getAllComments();
+&nbsp;//    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Get comment by product id list.
+&nbsp;     *
+&nbsp;     * @param productId the product id
+&nbsp;     * @return the list
+&nbsp;     */
+&nbsp;    @GetMapping(&quot;/getCommentsByProduct/{productId}&quot;)
+&nbsp;    public List&lt;Comment&gt; getCommentByProductId(@PathVariable Long productId){
+<b class="fc">&nbsp;        return  commentService.getCommentByProductId(productId);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Get comment by id comment.
+&nbsp;     *
+&nbsp;     * @param commentId the comment id
+&nbsp;     * @return the comment
+&nbsp;     */
+&nbsp;    @GetMapping(&quot;/{commentId}&quot;)
+&nbsp;    public Comment getCommentById(@PathVariable Long commentId){
+<b class="fc">&nbsp;        return commentService.getCommentById(commentId);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Save comment comment.
+&nbsp;     *
+&nbsp;     * @param comment the comment
+&nbsp;     * @return the comment
+&nbsp;     */
+&nbsp;    @PostMapping(&quot;/saveComment/&quot;)
+&nbsp;    public Comment saveComment(@RequestBody Comment comment){
+<b class="fc">&nbsp;        return commentService.saveComment(comment);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-04 16:29</div>
+</div>
+</body>
+</html>

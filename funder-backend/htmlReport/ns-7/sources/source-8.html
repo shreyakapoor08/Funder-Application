@@ -1,0 +1,163 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > ProductService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.asdc.funderbackend.service</a>
+</div>
+
+<h1>Coverage Summary for Class: ProductService (com.asdc.funderbackend.service)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">ProductService$MockitoMock$6T1Eimif</td>
+  </tr>
+  <tr>
+    <td class="name">ProductService$MockitoMock$6T1Eimif$auxiliary$0UZxsUIx</td>
+  </tr>
+  <tr>
+    <td class="name">ProductService$MockitoMock$6T1Eimif$auxiliary$axUK99v9</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.asdc.funderbackend.service;
+&nbsp;
+&nbsp;import com.asdc.funderbackend.entity.Product;
+&nbsp;import com.fasterxml.jackson.core.JsonProcessingException;
+&nbsp;import com.fasterxml.jackson.databind.JsonMappingException;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;import org.springframework.web.multipart.MultipartFile;
+&nbsp;
+&nbsp;/**
+&nbsp; * Service interface for managing product-related operations.
+&nbsp; */
+&nbsp;public interface ProductService {
+&nbsp;    /**
+&nbsp;     * Retrieve all products.
+&nbsp;     *
+&nbsp;     * @return List of products.
+&nbsp;     */
+&nbsp;    List&lt;Product&gt; getAllProducts();
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Add a new product.
+&nbsp;     *
+&nbsp;     * @param product The product details.
+&nbsp;     * @param image   The product image.
+&nbsp;     * @return The added product.
+&nbsp;     * @throws JsonMappingException    If there is an issue mapping JSON.
+&nbsp;     * @throws JsonProcessingException If there is an issue processing JSON.
+&nbsp;     * @throws IOException             If an I/O exception occurs.
+&nbsp;     */
+&nbsp;    Product addProduct(String product, MultipartFile image) throws JsonMappingException, JsonProcessingException, IOException;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Retrieve a product by its ID.
+&nbsp;     *
+&nbsp;     * @param id The ID of the product.
+&nbsp;     * @return The product with the specified ID.
+&nbsp;     */
+&nbsp;    Product getProductById(Long id);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Update the amount raised for a product.
+&nbsp;     *
+&nbsp;     * @param amountRaised The new amount raised.
+&nbsp;     * @param productId    The ID of the product to be updated.
+&nbsp;     * @return The updated amount raised.
+&nbsp;     */
+&nbsp;    int updateAmountRaised(Long amountRaised, Long productId);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Retrieve products associated with a specific user.
+&nbsp;     *
+&nbsp;     * @param userId The ID of the user.
+&nbsp;     * @return List of products associated with the specified user.
+&nbsp;     */
+&nbsp;    List&lt;Product&gt; getProductsByUserId(Long userId);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Retrieve a product by its ID.
+&nbsp;     *
+&nbsp;     * @param productId The ID of the product.
+&nbsp;     * @return The product with the specified ID.
+&nbsp;     */
+&nbsp;    Product getProductByProductId(Long productId);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Update an existing product.
+&nbsp;     *
+&nbsp;     * @param productId      The ID of the product to be updated.
+&nbsp;     * @param updatedProduct The updated product details.
+&nbsp;     * @return The updated product.
+&nbsp;     * @throws JsonMappingException    If there is an issue mapping JSON.
+&nbsp;     * @throws JsonProcessingException If there is an issue processing JSON.
+&nbsp;     * @throws IOException             If an I/O exception occurs.
+&nbsp;     */
+&nbsp;    Product updateProduct(Long productId, String updatedProduct) throws JsonMappingException, JsonProcessingException, IOException;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Delete a product by its ID.
+&nbsp;     *
+&nbsp;     * @param productId The ID of the product to be deleted.
+&nbsp;     */
+&nbsp;    void deleteProduct(Long productId);
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-04 16:29</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+.investments-page-wrapper {
+    padding: 15px;
+    flex-grow: 1;
+    justify-content: center;
+
+  }
+  .investments-page-wrapper .investment-cards {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 20px;
+  }
+  .investments-page-wrapper .investment-cards .investment-card-wrapper {
+    width: 300px;
+  }
+  .investments-page-wrapper .no-data-text {
+    display: flex;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+  }
+  

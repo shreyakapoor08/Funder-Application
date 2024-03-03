@@ -1,0 +1,201 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > InvestedProductServiceImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.asdc.funderbackend.serviceImpl</a>
+</div>
+
+<h1>Coverage Summary for Class: InvestedProductServiceImpl (com.asdc.funderbackend.serviceImpl)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">InvestedProductServiceImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    37.5%
+  </span>
+  <span class="absValue">
+    (12/32)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.asdc.funderbackend.serviceImpl;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;import org.springframework.transaction.annotation.Transactional;
+&nbsp;import com.asdc.funderbackend.entity.InvestedProduct;
+&nbsp;import com.asdc.funderbackend.entity.InvestmentDao;
+&nbsp;import com.asdc.funderbackend.entity.Payment;
+&nbsp;import com.asdc.funderbackend.entity.Product;
+&nbsp;import com.asdc.funderbackend.repository.InvestedProductRepo;
+&nbsp;import com.asdc.funderbackend.repository.PaymentRepo;
+&nbsp;import com.asdc.funderbackend.service.InvestedProductService;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Invested product service.
+&nbsp; */
+&nbsp;@Service
+<b class="fc">&nbsp;public class InvestedProductServiceImpl implements InvestedProductService{</b>
+&nbsp;
+&nbsp;	/**
+&nbsp;	 * The Invested product repo.
+&nbsp;	 */
+&nbsp;	@Autowired
+&nbsp;	InvestedProductRepo investedProductRepo;
+&nbsp;
+&nbsp;	/**
+&nbsp;	 * The Product service.
+&nbsp;	 */
+&nbsp;	@Autowired
+&nbsp;	ProductServiceImpl productServiceImpl;
+&nbsp;
+&nbsp;	/**
+&nbsp;	 * The Payment repo.
+&nbsp;	 */
+&nbsp;	@Autowired
+&nbsp;	PaymentRepo paymentRepo;	
+&nbsp;	
+&nbsp;	@Override
+&nbsp;	public List&lt;InvestedProduct&gt; getAllInvestedProduct(Long userId) {
+<b class="fc">&nbsp;			return	investedProductRepo.getInvestedProductByUserId(userId);</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	@Override
+&nbsp;//	@Transactional(rollbackFor = Exception.class)
+&nbsp;	public boolean saveInvestment(InvestmentDao investmentDao){
+&nbsp;		// Once payment will be successfull investment details will be saved to table.
+&nbsp;		try {
+<b class="fc">&nbsp;			if(investmentDao.isPaymentStatus()) {</b>
+&nbsp;				
+<b class="fc">&nbsp;				Product product = new Product();</b>
+<b class="fc">&nbsp;				product.setId(investmentDao.getProductId());</b>
+&nbsp;				
+<b class="fc">&nbsp;				InvestedProduct investedProduct = new InvestedProduct();</b>
+<b class="fc">&nbsp;				investedProduct.setInvestorId(investmentDao.getInvestorId());</b>
+<b class="fc">&nbsp;				investedProduct.setMoneyInvested(investmentDao.getAmount());</b>
+<b class="fc">&nbsp;				investedProduct.setProduct(product);</b>
+&nbsp;				
+<b class="fc">&nbsp;				Product product1 = productServiceImpl.getProductById(investmentDao.getProductId());</b>
+&nbsp;				
+&nbsp;				// Calculating the percentage of equity that user will get based on amount
+<b class="nc">&nbsp;				Float numerator = (Float.parseFloat(Long.toString(investmentDao.getAmount())) *</b>
+<b class="nc">&nbsp;						product1.getPercentage());</b>
+<b class="nc">&nbsp;				Float denominator = (Float.parseFloat(Long.toString(product1.getFundingAmount())));</b>
+<b class="nc">&nbsp;				Float percentageCount = numerator / denominator;</b>
+&nbsp;		
+<b class="nc">&nbsp;				investedProduct.setPercentageOwned(percentageCount);</b>
+<b class="nc">&nbsp;				InvestedProduct investedProduct2 =  investedProductRepo.save(investedProduct);</b>
+&nbsp;				
+<b class="nc">&nbsp;				if(investmentDao != null) {</b>
+<b class="nc">&nbsp;					Payment payment = new Payment();</b>
+<b class="nc">&nbsp;					payment.setRazorPayPaymentId(investmentDao.getRazorPayPaymentId());</b>
+<b class="nc">&nbsp;					payment.setAmount(investmentDao.getAmount());</b>
+<b class="nc">&nbsp;					payment.setInvestedProductId(investedProduct2.getId());</b>
+<b class="nc">&nbsp;					payment.setStatus(investmentDao.isPaymentStatus());</b>
+<b class="nc">&nbsp;					paymentRepo.save(payment);</b>
+&nbsp;				}
+&nbsp;				
+&nbsp;				// updating amountRaised column in table.
+<b class="nc">&nbsp;				Long amountRaised = product1.getRaisedAmount() + investmentDao.getAmount();</b>
+&nbsp;				
+<b class="nc">&nbsp;				int isUpdated = productServiceImpl.updateAmountRaised(amountRaised, investmentDao.getProductId());</b>
+<b class="nc">&nbsp;				if(isUpdated == 1) {</b>
+<b class="nc">&nbsp;					return true;</b>
+&nbsp;				}else {
+<b class="nc">&nbsp;					return false;</b>
+&nbsp;				}
+&nbsp;			}
+<b class="fc">&nbsp;		} catch (Exception e) {</b>
+<b class="fc">&nbsp;			return false;</b>
+<b class="nc">&nbsp;		}</b>
+&nbsp;		
+<b class="nc">&nbsp;		return true;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-04 16:29</div>
+</div>
+</body>
+</html>

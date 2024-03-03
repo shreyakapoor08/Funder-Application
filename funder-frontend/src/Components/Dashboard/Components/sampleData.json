@@ -1,0 +1,57 @@
+
+[
+    {
+      "id": 1,
+      "categories": [
+        { "title": "Fashion & Wearables" }
+      ],
+      "title": "Sample Founder 1",
+      "description": "The product is used for generating the sources from the power supplies and requires funding",
+      "dateOfRoundClosing": "2023-012-15",
+      "raisedAmount": 200000,
+      "percentage": 50,
+      "fundingAmount": 500000,
+      "productImage": "https://media.istockphoto.com/id/1390331984/photo/founder-word-on-wooden-cubes-on-the-background-of-a-folder-with-documents-and-glasses.webp?b=1&s=170667a&w=0&k=20&c=aSpqlHWOvcXdG8bCdFQMW4rzCvaltHIWbvZaW68aAcI="
+    },
+    {
+      "id": 2,
+      "categories": [
+        { "title": "Finance" }
+      ],
+      "title": "Sample Founder 2",
+      "description": "The product is used for generating the sources from the power supplies and requires funding",
+      "dateOfRoundClosing": "2023-12-20",
+      "raisedAmount": 150000,
+      "fundingAmount": 300000,
+      "percentage": 50,
+      "productImage": "https://media.istockphoto.com/id/1390331984/photo/founder-word-on-wooden-cubes-on-the-background-of-a-folder-with-documents-and-glasses.webp?b=1&s=170667a&w=0&k=20&c=aSpqlHWOvcXdG8bCdFQMW4rzCvaltHIWbvZaW68aAcI="
+    },
+    {
+      "id": 3,
+      "categories": [
+        { "title": "Fashion & Wearables" }
+      ],
+      "title": "Sample Founder 3",
+      "description": "The product is used for generating the sources from the power supplies and requires funding",
+      "dateOfRoundClosing": "2023-12-10",
+      "raisedAmount": 100000,
+      "fundingAmount": 400000,
+      "percentage": 50,
+      "productImage": "https://media.istockphoto.com/id/1390331984/photo/founder-word-on-wooden-cubes-on-the-background-of-a-folder-with-documents-and-glasses.webp?b=1&s=170667a&w=0&k=20&c=aSpqlHWOvcXdG8bCdFQMW4rzCvaltHIWbvZaW68aAcI="
+    },
+    {
+      "id": 4,
+      "categories": [
+        { "title": "Fashion & Wearables" },
+        { "title": "Health & Fitness" }
+      ],
+      "title": "Sample Founder 4",
+      "description": "The product is used for generating the sources from the power supplies and requires funding",
+      "dateOfRoundClosing": "2023-03-10",
+      "raisedAmount": 400000,
+      "fundingAmount": 400000,
+      "percentage": 50,
+      "productImage": "https://media.istockphoto.com/id/1390331984/photo/founder-word-on-wooden-cubes-on-the-background-of-a-folder-with-documents-and-glasses.webp?b=1&s=170667a&w=0&k=20&c=aSpqlHWOvcXdG8bCdFQMW4rzCvaltHIWbvZaW68aAcI="
+    }
+  ]
+  

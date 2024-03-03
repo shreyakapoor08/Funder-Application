@@ -1,0 +1,124 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > ProductRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.asdc.funderbackend.repository</a>
+</div>
+
+<h1>Coverage Summary for Class: ProductRepository (com.asdc.funderbackend.repository)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">ProductRepository$MockitoMock$J9kBv5Zo</td>
+  </tr>
+  <tr>
+    <td class="name">ProductRepository$MockitoMock$J9kBv5Zo$auxiliary$L9aIV7Zd</td>
+  </tr>
+  <tr>
+    <td class="name">ProductRepository$MockitoMock$J9kBv5Zo$auxiliary$nomzptzk</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.asdc.funderbackend.repository;
+&nbsp;
+&nbsp;import com.asdc.funderbackend.entity.Product;
+&nbsp;import org.springframework.data.jpa.repository.JpaRepository;
+&nbsp;import org.springframework.data.jpa.repository.Modifying;
+&nbsp;import org.springframework.data.jpa.repository.Query;
+&nbsp;import org.springframework.data.repository.query.Param;
+&nbsp;import org.springframework.stereotype.Repository;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;/**
+&nbsp; * Repository interface for managing product-related database operations.
+&nbsp; */
+&nbsp;@Repository
+&nbsp;public interface ProductRepository extends JpaRepository&lt;Product, Long&gt; {
+&nbsp;
+&nbsp;	/**
+&nbsp;	 * Retrieve a product by its ID using a native SQL query.
+&nbsp;	 *
+&nbsp;	 * @param id The ID of the product.
+&nbsp;	 * @return The product with the specified ID.
+&nbsp;	 */
+&nbsp;	@Query(value = &quot;select * from product where id =:id&quot;, nativeQuery = true)
+&nbsp;	Product getProductById(@Param(&quot;id&quot;) Long id);
+&nbsp;
+&nbsp;	/**
+&nbsp;	 * Update the amount raised for a product using a native SQL query.
+&nbsp;	 *
+&nbsp;	 * @param amountRaised The new amount raised.
+&nbsp;	 * @param productId    The ID of the product to be updated.
+&nbsp;	 * @return The number of affected rows.
+&nbsp;	 */
+&nbsp;	@Modifying
+&nbsp;	@Query(value = &quot;UPDATE product SET raised_amount = :amountRaised WHERE id = :productId&quot;, nativeQuery = true)
+&nbsp;	int updateAmountRaised(@Param(&quot;amountRaised&quot;) Long amountRaised, @Param(&quot;productId&quot;) Long productId);
+&nbsp;
+&nbsp;	/**
+&nbsp;	 * Retrieve products associated with a specific user.
+&nbsp;	 *
+&nbsp;	 * @param userId The ID of the user.
+&nbsp;	 * @return List of products associated with the specified user.
+&nbsp;	 */
+&nbsp;	List&lt;Product&gt; findByUserId(Long userId);
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-04 16:29</div>
+</div>
+</body>
+</html>

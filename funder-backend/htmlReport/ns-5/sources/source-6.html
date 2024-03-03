@@ -1,0 +1,205 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > FirebaseFileStorageServiceImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.asdc.funderbackend.serviceImpl</a>
+</div>
+
+<h1>Coverage Summary for Class: FirebaseFileStorageServiceImpl (com.asdc.funderbackend.serviceImpl)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FirebaseFileStorageServiceImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (27/30)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.asdc.funderbackend.serviceImpl;
+&nbsp;
+&nbsp;import com.asdc.funderbackend.controller.UserController;
+&nbsp;import com.asdc.funderbackend.service.FirebaseFileStorageService;
+&nbsp;import com.google.auth.oauth2.GoogleCredentials;
+&nbsp;import com.google.cloud.storage.Blob;
+&nbsp;import com.google.cloud.storage.BlobId;
+&nbsp;import com.google.cloud.storage.BlobInfo;
+&nbsp;import com.google.cloud.storage.Storage;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.boot.context.event.ApplicationReadyEvent;
+&nbsp;import org.springframework.context.event.EventListener;
+&nbsp;import org.springframework.core.io.ClassPathResource;
+&nbsp;import org.springframework.core.io.ResourceLoader;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;import org.springframework.util.ResourceUtils;
+&nbsp;import org.springframework.util.StringUtils;
+&nbsp;import org.springframework.web.multipart.MultipartFile;
+&nbsp;import java.io.File;
+&nbsp;import java.io.FileInputStream;
+&nbsp;import java.io.IOException;
+&nbsp;import java.io.InputStream;
+&nbsp;import java.util.UUID;
+&nbsp;import com.google.cloud.storage.StorageOptions;
+&nbsp;import java.util.HashMap;
+&nbsp;import java.util.Map;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Firebase file storage service.
+&nbsp; */
+&nbsp;@Service
+<b class="fc">&nbsp;public class FirebaseFileStorageServiceImpl implements FirebaseFileStorageService{</b>
+&nbsp;	
+<b class="fc">&nbsp;    private final String SDKFILENAME = &quot;funder-asdc-firebase-adminsdk-bjd1i-36077f273c.json&quot;; </b>
+&nbsp;    private Storage storage;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The Resource loader.
+&nbsp;     */
+&nbsp;    @Autowired
+&nbsp;    ResourceLoader resourceLoader;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Init.
+&nbsp;     *
+&nbsp;     * @param event the event
+&nbsp;     */
+&nbsp;    @EventListener
+&nbsp;    public void init(ApplicationReadyEvent event) {
+&nbsp;        // initalizing firebase connection
+&nbsp;        try {
+<b class="fc">&nbsp;            String filePath = new ClassPathResource(SDKFILENAME).getFile().getAbsolutePath();</b>
+<b class="fc">&nbsp;            File file = ResourceUtils.getFile(filePath);</b>
+&nbsp;            
+<b class="fc">&nbsp;            try (InputStream in = new FileInputStream(file)) {</b>
+<b class="fc">&nbsp;                storage = StorageOptions.newBuilder()</b>
+<b class="fc">&nbsp;                        .setCredentials(GoogleCredentials.fromStream(in))</b>
+<b class="fc">&nbsp;                        .setProjectId(&quot;funder-asdc&quot;)</b>
+<b class="fc">&nbsp;                        .build()</b>
+<b class="fc">&nbsp;                        .getService();</b>
+<b class="fc">&nbsp;            } catch (IOException e) {</b>
+<b class="nc">&nbsp;            	e.printStackTrace();</b>
+<b class="fc">&nbsp;            }</b>
+<b class="nc">&nbsp;        } catch (Exception ex) {</b>
+<b class="nc">&nbsp;        	ex.printStackTrace();</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String uploadFile(MultipartFile file) throws IOException{
+&nbsp;
+&nbsp;        // saving images into firebase and return image URL.
+<b class="fc">&nbsp;    	String firebaseURL = &quot;https://firebasestorage.googleapis.com/v0/b/&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;        String imageName = generateFileName(file.getOriginalFilename());</b>
+<b class="fc">&nbsp;        Map&lt;String, String&gt; map = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        map.put(&quot;firebaseStorageDownloadTokens&quot;, imageName);</b>
+<b class="fc">&nbsp;        BlobId blobId = BlobId.of(&quot;funder-asdc.appspot.com&quot;, imageName);</b>
+&nbsp;        
+<b class="fc">&nbsp;        BlobInfo blobInfo = BlobInfo.newBuilder(blobId)</b>
+<b class="fc">&nbsp;                .setMetadata(map)</b>
+<b class="fc">&nbsp;                .setContentType(file.getContentType())</b>
+<b class="fc">&nbsp;                .build();</b>
+&nbsp;        
+<b class="fc">&nbsp;        storage.create(blobInfo, file.getBytes());</b>
+&nbsp;       
+<b class="fc">&nbsp;        String accessURL = firebaseURL + &quot;funder-asdc.appspot.com&quot; +</b>
+&nbsp;                &quot;/o/&quot; + imageName + &quot;?alt=media&amp;token=&quot; + imageName;
+&nbsp;        
+<b class="fc">&nbsp;        return accessURL;</b>
+&nbsp;
+&nbsp;    }
+&nbsp;    
+&nbsp;    private String generateFileName(String originalFileName) {
+<b class="fc">&nbsp;        return UUID.randomUUID().toString() + &quot;.&quot; + getExtension(originalFileName);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private String getExtension(String originalFileName) {
+<b class="fc">&nbsp;        return StringUtils.getFilenameExtension(originalFileName);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-04 16:29</div>
+</div>
+</body>
+</html>

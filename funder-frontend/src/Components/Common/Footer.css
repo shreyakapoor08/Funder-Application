@@ -1,0 +1,123 @@
+.footer-logo img{
+  max-height:45px;
+  margin-right:190px;
+  margin-top:10px;
+}
+.footer{
+  background-color:#DADADA;
+  font-family:'Poppins', sans-serif;
+  padding:30px 60px;
+  display:block;
+  justify-content:space-around;
+  flex-wrap:wrap;
+}
+.t1,t2{
+  display:flex;
+}
+.footer_title{
+  font-size:20px;
+  font-weight:bold;
+  font-style:normal;
+  text-transform:uppercase;
+  color: #333;
+}
+.footer-section{
+  flex-basis:20%;
+  text-align:left;
+  margin-bottom:20px;
+}
+.footer-section h3{
+  font-size:20px;
+  margin-bottom:10px;
+}
+.footer-section ul{
+  list-style:none;
+  padding:0;
+}
+.footer-section ul li{
+  margin-bottom:8px;
+}
+.footer-section a{
+  text-decoration:none;
+  color:#242526;
+}
+.footer-line{
+  font-family: 'Poppins', sans-serif;
+  padding:10px 20px;
+  text-align:center;
+}
+.footer-line a{
+  text-decoration:none;
+  color:#242526;
+  margin:0 10px;
+}
+.copyright{
+  text-align:center;
+  font-size:14px;
+  color: #242526;
+}
+.footer-line{
+  font-family:'Poppins', sans-serif;
+  padding:10px 0;
+  text-align:center;
+  font-size:10px;
+}
+
+@media screen and (max-width:320px){
+  .footer{
+    display:block;
+  }
+  .footer-logo img{
+    max-height:35px;
+    margin-right:0px;
+    margin-top:0px;
+    align-items:center;
+  }
+  .footer_title{
+    font-size:14px;
+    font-weight:bold;
+    font-style:normal;
+    text-transform:uppercase;
+  }
+  .footer-section a{
+    text-decoration:none;
+    color:#000;
+    font-size:12px;
+  }
+  .footer-section ul{
+    list-style:none;
+    padding:0;
+    margin-top:5px;
+  }
+}
+@media screen and (min-width:321px) and (max-width:480px){
+  .footer_title{
+    font-size:16px;
+    font-weight:bold;
+    font-style:normal;
+    text-transform:uppercase;
+  }
+  .footer-section a{
+    text-decoration:none;
+    color:#000;
+    font-size:12px;
+  }
+  .footer-section ul{
+    list-style:none;
+    padding:0;
+    margin-top:5px;
+  }
+}
+@media screen and (min-width:481px) and (max-width:768px){
+  .footer_title{
+    font-size:18px;
+    font-weight:bold;
+    font-style:normal;
+    text-transform:uppercase;
+  }
+  .footer-section a{
+    text-decoration:none;
+    color:#000;
+    font-size:14px;
+  }
+}

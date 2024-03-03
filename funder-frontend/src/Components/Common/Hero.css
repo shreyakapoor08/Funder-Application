@@ -1,0 +1,143 @@
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  text-align: left;
+  color: #fff;
+  padding: 20px;
+  max-width: 60%;
+}
+
+.hero-heading {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.hero-text {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.hero-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #128C76;
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.hero-arrow {
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  cursor: pointer;
+}
+
+.hero-arrow-left {
+  left: 5%;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.hero-arrow-right {
+  right: 5%;
+  transform: translateY(-50%);
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .hero-heading {
+    font-size: 30px;
+    margin-bottom: 5px;
+  }
+  .hero-text {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  .hero-button {
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+  .hero-arrow {
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    cursor: pointer;
+  }
+  .hero-arrow-left {
+    left: 5%;
+    transform: translateY(-50%) rotate(180deg);
+  }
+  .hero-arrow-right {
+    right: 5%;
+    transform: translateY(-50%);
+  }
+}
+
+@media screen and (min-width: 321px) and (max-width: 480px) {
+  .hero-heading {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+  .hero-text {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  .hero-button {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  .hero-arrow {
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    cursor: pointer;
+  }
+  .hero-arrow-left {
+    left: 5%;
+    transform: translateY(-50%) rotate(180deg);
+  }
+  .hero-arrow-right {
+    right: 5%;
+    transform: translateY(-50%);
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .hero-heading {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+  .hero-text {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  .hero-button {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  .hero-arrow {
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    cursor: pointer;
+  }
+  .hero-arrow-left {
+    left: 5%;
+    transform: translateY(-50%) rotate(180deg);
+  }
+  .hero-arrow-right {
+    right: 5%;
+    transform: translateY(-50%);
+  }
+}

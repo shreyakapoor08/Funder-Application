@@ -1,0 +1,44 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+}
+.sidebar .availbale-report-lable {
+  padding-top: 20px;
+  width: 280px;
+  padding-left: 10px;
+  margin-right: 0px;
+  display: flex;
+  gap: 5px;
+}
+.sidebar .availbale-report-lable .title {
+  font-weight: 600;
+}
+.sidebar .dashboard-type-wrapper {
+  width: 340px;
+  margin-right: 3px;
+  overflow: auto;
+}
+.sidebar .dashboard-type-wrapper ul {
+  padding-left: 10px;
+}
+.sidebar .dashboard-card {
+  cursor: pointer;
+  display: flex;
+  width: auto;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.sidebar .dashboard-card .title {
+  font-weight: bold;
+  margin-top: 5px;
+}
+.sidebar .selected-type-card {
+  background-color: #edebe9;
+  border: 1px solid gainsboro;
+}
+.sidebar .type-card {
+  border: 2px solid #d3d3d3 14;
+}
+.sidebar .type-card:hover {
+  background-color: #edebe9;
+}

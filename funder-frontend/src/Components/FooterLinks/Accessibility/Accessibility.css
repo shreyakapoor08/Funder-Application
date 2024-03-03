@@ -1,0 +1,22 @@
+.accessibility-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .accessibility-heading {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .accessibility-content {
+    line-height: 1.6;
+    color: #555;
+  }
+  .accessibility-content a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .accessibility-content a:hover {
+    text-decoration: underline;
+  }

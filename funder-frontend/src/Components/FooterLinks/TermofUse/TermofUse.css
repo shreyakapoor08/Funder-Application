@@ -1,0 +1,27 @@
+.terms-of-use {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+    .section-heading {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .last-updated {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  .terms-section {
+    margin-bottom: 30px;
+  }
+  .section-subheading {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .closing-message {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  .contact-link {
+    color: #1976D2;
+  }

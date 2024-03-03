@@ -1,0 +1,21 @@
+.category-filter-wrapper .header {
+  display: flex;
+  justify-content: space-between;
+}
+.category-filter-wrapper .header .title {
+  font-size: large;
+  font-weight: 600;
+}
+.category-filter-wrapper .category-list-wrapper {
+  margin-top: 15px;
+}
+.category-filter-wrapper .category-list-wrapper .category-wrapper {
+  margin: 3px 0;
+}
+.category-filter-wrapper .category-action-btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}

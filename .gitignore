@@ -1,0 +1,99 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+#FrontEnd
+# dependencies
+/funder-frontend/node_modules
+/funder-frontend/.pnp
+/funder-frontend/.pnp.js
+
+# testing
+/funder-frontend/coverage
+
+# production
+/funder-frontend/build
+
+# misc
+/funder-frontend/.env
+# .DS_Store
+# .env.local
+# .env.development.local
+# .env.test.local
+# .env.production.local
+
+/funder-frontend/npm-debug.log*
+/funder-frontend/yarn-debug.log*
+/funder-frontend/yarn-error.log*
+
+#BackEnd
+
+#Properties file
+/funder-backend/src/main/resources/application.properties
+
+#Other
+/funder-backend/HELP.md
+/funder-backend/target/
+/funder-backend/!.mvn/wrapper/maven-wrapper.jar
+/funder-backend/!**/src/main/**/target/
+/funder-backend/!**/src/test/**/target/
+
+### STS ###
+/funder-backend/.apt_generated
+/funder-backend/.classpath
+/funder-backend/.factorypath
+/funder-backend/.project
+/funder-backend/.settings
+/funder-backend/.springBeans
+/funder-backend/.sts4-cache
+
+### IntelliJ IDEA ###
+/funder-backend/.idea
+/funder-backend/*.iws
+/funder-backend/*.iml
+/funder-backend/*.ipr
+
+### NetBeans ###
+/funder-backend/nbproject/private/
+/funder-backend/nbbuild/
+/funder-backend/dist/
+/funder-backend/nbdist/
+/funder-backend/.nb-gradle/
+/funder-backend/build/
+/funder-backend/!**/src/main/**/build/
+/funder-backend/!**/src/test/**/build/
+
+### VS Code ###
+/funder-backend/.vscode/
+/funder-backend/HELP.md
+/funder-backend/target/
+/funder-backend/!.mvn/wrapper/maven-wrapper.jar
+/funder-backend/!**/src/main/**/target/
+/funder-backend/!**/src/test/**/target/
+
+### STS ###
+/funder-backend/.apt_generated
+/funder-backend/.classpath
+/funder-backend/.factorypath
+/funder-backend/.project
+/funder-backend/.settings
+/funder-backend/.springBeans
+/funder-backend/.sts4-cache
+
+### IntelliJ IDEA ###
+/funder-backend/.idea
+/funder-backend/*.iws
+/funder-backend/*.iml
+/funder-backend/*.ipr
+
+### NetBeans ###
+/funder-backend/nbproject/private/
+/funder-backend/nbbuild/
+/funder-backend/dist/
+/funder-backend/nbdist/
+/funder-backend/.nb-gradle/
+/funder-backend/build/
+/funder-backend/!**/src/main/**/build/
+/funder-backend/!**/src/test/**/build/
+
+### VS Code ###
+/funder-backend/.vscode/
+

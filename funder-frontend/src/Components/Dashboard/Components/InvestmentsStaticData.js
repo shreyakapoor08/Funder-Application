@@ -1,0 +1,58 @@
+export const investmentData = [
+  {
+    id: 1,
+    video:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    categories: ["Education"],
+    title: "Test Title",
+    dateOfInvestment: "2023-06-28T16:05:47Z",
+    moneyInvested: 1000,
+    PercentageOwned: 2.2,
+    backers: 15,
+    totalIvestmentGot: 15000,
+    totalInvestmentSeeking: 25000,
+    pdf: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+  },
+  {
+    id: 2,
+    video:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    categories: ["Audio"],
+    title: "Test Data",
+    dateOfInvestment: "2023-07-28T16:05:47Z",
+    moneyInvested: 1000,
+    PercentageOwned: 2.2,
+    backers: 15,
+    totalIvestmentGot: 15000,
+    totalInvestmentSeeking: 25000,
+    pdf: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+  },
+  {
+    id: 3,
+    video:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    categories: ["Home"],
+    title: "Test Home",
+    dateOfInvestment: "2023-04-28T16:05:47Z",
+    moneyInvested: 1000,
+    PercentageOwned: 2.2,
+    backers: 15,
+    totalIvestmentGot: 15000,
+    totalInvestmentSeeking: 25000,
+    pdf: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+  },
+  {
+    id: 4,
+    video:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    categories: ["Comics"],
+    title: "Test Comic",
+    dateOfInvestment: "2023-05-28T16:05:47Z",
+    moneyInvested: 1000,
+    PercentageOwned: 2.2,
+    backers: 15,
+    totalIvestmentGot: 15000,
+    totalInvestmentSeeking: 25000,
+    pdf: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+  },
+];

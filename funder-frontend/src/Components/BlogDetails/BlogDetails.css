@@ -1,0 +1,30 @@
+.blog-description {
+    white-space: 'pre-line';
+    padding-bottom: 30px;
+}
+
+.blog-image {
+    width: 50%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px 50px;
+  }
+
+.img img{
+  align-items: center;
+}
+  .blog-content {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .blog-title {
+      color: #333;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      padding: 20px 50px;
+    }  
