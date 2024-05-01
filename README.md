@@ -39,5 +39,5 @@ All of the features provided by the application, as well as the various scenario
 [**User Scenarios**](documentation/User_Scenarios.md)
 
 ### Code Coverage
-![MicrosoftTeams-image__2_](/uploads/6cf7cbb1f500043770f304d55b020c5f/MicrosoftTeams-image__2_.png)
+[**User Scenarios**](documentation/Code Coverage Report/Code Coverage percentage.png)
 
