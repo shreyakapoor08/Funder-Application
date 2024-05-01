@@ -39,5 +39,6 @@ All of the features provided by the application, as well as the various scenario
 [**User Scenarios**](documentation/User_Scenarios.md)
 
 ### Code Coverage
-[**User Scenarios**](documentation/Code Coverage Report/Code Coverage percentage.png)
+[**Code Coverage percentage**](https://github.com/shreyakapoor08/Funder-Application/assets/31164665/1e790d1c-23f4-48cf-b18b-6e81bd49d3d2)
+
 
