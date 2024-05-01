@@ -6,8 +6,6 @@
 - [About](#about)
 - [Technologies Used](#technologies-used)
 - [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Contributing](#contributing)
 - [Documentation](#documentation)
 
 ## About
