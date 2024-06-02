@@ -1,5 +1,5 @@
 const config = {
-  URL_PATH: http://funder-lb-1731838172.us-east-1.elb.amazonaws.com
+  URL_PATH: "http://funder-lb-1731838172.us-east-1.elb.amazonaws.com"
 };
 
 // const config = {
