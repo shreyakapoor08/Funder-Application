@@ -1,5 +1,5 @@
 const config = {
-  URL_PATH: "http://localhost:8080",
+  URL_PATH: process.env.BACKEND_URL
 };
 
 // const config = {
