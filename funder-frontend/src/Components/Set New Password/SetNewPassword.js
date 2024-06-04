@@ -29,7 +29,7 @@ export default function SetNewPassword() {
   const [errors, setErrors] = React.useState({});
   const [showSuccessMessage, setShowSuccessMessage] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const navigate = useNavigate();
 
   React.useEffect(() => {

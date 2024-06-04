@@ -91,7 +91,7 @@ export default function SignUp() {
             password: formData.password,
           }
         );
-
+        console.log(response)
         setShowSuccessMessage(true);
         setTimeout(() => {
           navigate("/login");

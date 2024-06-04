@@ -32,17 +32,10 @@ function readImage(url) {
 
 export const pdfGenerator = async (data) => {
   const {
-    id,
-    video,
-    categories,
     title,
     dateOfInvestment,
     moneyInvested,
     PercentageOwned,
-    backers,
-    totalIvestmentGot,
-    totalInvestmentSeeking,
-    user = "user",
   } = data;
 
   const logoImage = await readImage(companyImage);

@@ -1,5 +1,5 @@
 const config = {
-  URL_PATH: "http://localhost:8080",
+  URL_PATH: process.env.REACT_APP_BACKEND_HOST,
 };
 
 // const config = {
