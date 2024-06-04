@@ -39,6 +39,38 @@ Funder.com is a user-friendly React project that empowers small startups and inv
 
 ### Application Showcase
 
+**Signup**
+![alt text](<documentation/application-screenshots/Screenshot 2023-11-26 173217.png>)
+
+**Login**
+![alt text](<documentation/application-screenshots/Screenshot 2023-11-26 173118.png>)
+
+**Landing Page**
+![alt text](<documentation/application-screenshots/Screenshot 2023-11-26 171942.png>)
+
+**Product List Page**
+![alt text](<documentation/application-screenshots/Screenshot 2023-11-26 173547.png>)
+
+**Product Details Page**
+![alt text](<documentation/application-screenshots/Screenshot 2023-11-26 173750.png>)
+
+**Comments Section**
+![alt text](<documentation/application-screenshots/Screenshot 2023-11-12 230749.png>)
+
+**Payment Gateway**
+![alt text](<documentation/application-screenshots/Screenshot 2023-11-26 173916.png>)
+
+**Certification after investment**
+![alt text](<documentation/application-screenshots/Screenshot 2023-11-26 174917.png>)
+
+**Investment Dashboard**
+![alt text](<documentation/application-screenshots/Screenshot 2023-11-26 174410.png>)
+
+**Add new product**
+![alt text](<documentation/application-screenshots/Screenshot 2023-11-26 174500.png>)
+
+**Edit Existing Product**
+![alt text](<documentation/application-screenshots/Screenshot 2023-11-26 174846.png>)
 
 ### External Dependencies
 These are programming languages, frameworks, and other pieces of software required to run the application. A detailed list of dependencies, along with instructions on how to install and configure them are given in the document below:  
