@@ -80,6 +80,10 @@ These are programming languages, frameworks, and other pieces of software requir
 In order for the application to be used by users anywhere in the world, it must be built and deployed onto a server. Detailed instructions on how to deploy the application are given in the document below:  
 [**Build and Deployment**](documentation/Build_And_Deployment.md)
 
+### Solid Principles
+A detailed explaination of SOLID principles used during the development of the project:  
+[**Solid Principles**](documentation/Solid_Principles.md)
+
 ### Code Coverage
 [**Code Coverage percentage**](https://github.com/shreyakapoor08/Funder-Application/assets/31164665/1e790d1c-23f4-48cf-b18b-6e81bd49d3d2)
 
