@@ -1,0 +1,164 @@
+# This file is a template, and might need editing before it works on your project.
+# This is a sample GitLab CI/CD configuration file that should run without any modifications.
+# It demonstrates a basic 3 stage CI/CD pipeline. Instead of real tests or scripts,
+# it uses echo commands to simulate the pipeline execution.
+#
+# A pipeline is composed of independent jobs that run scripts, grouped into stages.
+# Stages run in sequential order, but jobs within stages run in parallel.
+#
+# For more information, see: https://docs.gitlab.com/ee/ci/yaml/index.html#stages
+#
+# You can copy and paste this template into a new `.gitlab-ci.yml` file.
+# You should not add this template to an existing `.gitlab-ci.yml` file by using the `include:` keyword.
+#
+# To contribute improvements to CI/CD templates, please follow the Development guide at:
+# https://docs.gitlab.com/ee/development/cicd/templates.html
+# This specific template is located at:
+# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
+
+stages: # List of stages for jobs, and their order of execution
+  - test
+  - code-quality
+  - build
+  - publish
+  - deploy
+
+variables:
+  FRONTEND_IMAGE: node:18.12.1 # Base image for the frontend
+  BACKEND_IMAGE: maven:3.8.3-openjdk-17 # Base image for the backend
+
+# test_backend
+test_backend:
+  stage: test
+  tags:
+    - deploy
+  image: $BACKEND_IMAGE
+  script:
+    - cd funder-backend
+    - mvn test
+  only:
+    - main
+
+#code_quality 
+code_quality:
+  stage: code-quality
+  tags:
+    - deploy  
+  image: $BACKEND_IMAGE
+  script:
+    - echo "Checking code quality"
+    - mkdir smells/
+    - java -jar $CI_PROJECT_DIR/.gitlab/DesigniteJava.jar -i $CI_PROJECT_DIR/funder-backend -o $CI_PROJECT_DIR/smells/ -d
+  artifacts:
+    paths:
+      - smells/
+      - $CI_PROJECT_DIR
+  only:
+    - main
+
+# build_backend
+build_backend:
+  stage: build
+  tags:
+    - deploy  
+  image: $BACKEND_IMAGE
+  script:
+    - cd funder-backend
+    - mvn clean install
+  only:
+    - main
+
+# publish-backend in docker
+publish-backend:
+  image: docker:latest
+  tags:
+    - deploy 
+  stage: publish
+  variables:
+    DOCKER_TLS_CERTDIR: ""
+    DOCKER_HOST: "tcp://docker:2375"
+  services:
+    - docker:dind
+  script:
+    - cd funder-backend
+    - pwd
+    - echo $SERVER_IP
+    - docker --version
+    - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD docker.io
+    - docker build -t docker.io/funderasdc/asdc-backend:$CI_COMMIT_SHORT_SHA .
+    - docker push docker.io/funderasdc/asdc-backend:$CI_COMMIT_SHORT_SHA
+  only:
+    - main
+
+# Deploy-backend
+deploy_backend:
+  image: alpine:latest
+  tags:
+    - deploy  
+  stage: deploy
+  script:
+    - chmod og= $SSH_PRIVATE_KEY
+    - apk update && apk add openssh-client
+    - ssh -i $SSH_PRIVATE_KEY -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD docker.io"
+    - ssh -i $SSH_PRIVATE_KEY -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker pull docker.io/funderasdc/asdc-backend:$CI_COMMIT_SHORT_SHA"
+    - ssh -i $SSH_PRIVATE_KEY -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker container rm -f my-app || true"
+    - ssh -i $SSH_PRIVATE_KEY -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker run -d -p 8080:8080 --name my-app docker.io/funderasdc/asdc-backend:$CI_COMMIT_SHORT_SHA"
+  only:
+    - main
+  environment:
+    name: prod-backend
+    url: http://129.173.67.169:8080
+
+# build_frontend
+build_frontend:
+  stage: build
+  tags:
+    - deploy
+  image: $FRONTEND_IMAGE
+  script:
+    - cd funder-frontend
+    - npm install
+    - CI=false npm run build
+  only:
+    - main
+
+# publish-frontend in docker
+publish_frontend:
+  image: docker:latest
+  stage: publish
+  tags:
+    - deploy
+  variables:
+    DOCKER_TLS_CERTDIR: ""
+    DOCKER_HOST: "tcp://docker:2375"
+  services:
+    - docker:dind
+  script:
+    - cd funder-frontend
+    - pwd
+    - echo $SERVER_IP
+    - docker --version
+    - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD docker.io
+    - docker build -t docker.io/funderasdc/asdc-frontend:$CI_COMMIT_SHORT_SHA .
+    - docker push docker.io/funderasdc/asdc-frontend:$CI_COMMIT_SHORT_SHA
+  only:
+    - main
+
+# deploy_frontend
+deploy_frontend:
+  image: alpine:latest
+  tags:
+    - deploy
+  stage: deploy
+  script:
+    - chmod og= $SSH_PRIVATE_KEY
+    - apk update && apk add openssh-client
+    - ssh -i $SSH_PRIVATE_KEY -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD docker.io"
+    - ssh -i $SSH_PRIVATE_KEY -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker pull docker.io/funderasdc/asdc-frontend:$CI_COMMIT_SHORT_SHA"
+    - ssh -i $SSH_PRIVATE_KEY -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker container rm -f my-frontend || true"
+    - ssh -i $SSH_PRIVATE_KEY -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker run -d -p 3000:3000 --name my-frontend docker.io/funderasdc/asdc-frontend:$CI_COMMIT_SHORT_SHA"
+  only:
+    - main
+  environment:
+    name: prod-frontend
+    url: http://129.173.67.169:3000
